@@ -1,8 +1,8 @@
-const express = require('express');
+const express = require("express");
 const app = express();
-const cors = require('cors'); // Import the cors module
+const cors = require("cors"); // Import the cors module
 const port = 8080;
-const dotenv = require('dotenv');
+const dotenv = require("dotenv");
 dotenv.config(); // Load environment variables from a .env file
 
 // Import the MongoClient from the MongoDB driver
