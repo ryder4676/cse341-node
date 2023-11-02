@@ -13,7 +13,8 @@ async function main() {
   console.log(process.env.URI);
 
   // Create a new MongoDB client instance using the provided connection URI
-  const client = new MongoClient(process.env.URI);
+  const client = new MongoClient(process.env.URI, {ssl: true, 
+  sslValidate: true});
 
   // Establish a connection to the MongoDB server
   await client.connect();
