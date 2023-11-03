@@ -16,7 +16,13 @@ async function main() {
   const client = new MongoClient(process.env.URI);
 
   // Establish a connection to the MongoDB server
-  await client.connect();
+  await client.connect().then(() => {
+    console.log('Connected to MongoDB');
+    // Your database operations here
+  })
+  .catch(err => {
+    console.error('Error connecting to MongoDB:', err);
+  });
 
   // List the available databases on the connected MongoDB server
   await listDatabases(client);
@@ -44,11 +50,6 @@ async function main() {
 
   // Enable CORS for all routes in the Express app
   app.use(cors());
-
-  // Define a route to serve professional data (code is commented out)
-  // app.get('/professional', (req, res) => {
-  //   res.json(professionalData);
-  // });
 
   // Use routes defined in a separate module
   app.use("/", require("./routes"));
